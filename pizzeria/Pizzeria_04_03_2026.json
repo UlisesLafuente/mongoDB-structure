@@ -1,0 +1,379 @@
+{
+  "collections": {
+    "Pizzeria.CategoriasPizza": {
+      "ns": "Pizzeria.CategoriasPizza",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "active",
+          "nombre"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "active": {
+            "bsonType": "bool"
+          },
+          "nombre": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Pizzeria.Clientes": {
+      "ns": "Pizzeria.Clientes",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "apellidos",
+          "ciudad",
+          "codigoPostal",
+          "direccion",
+          "nombre",
+          "provincia",
+          "telefono"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "apellidos": {
+            "bsonType": "string"
+          },
+          "ciudad": {
+            "bsonType": "string"
+          },
+          "codigoPostal": {
+            "bsonType": "string"
+          },
+          "direccion": {
+            "bsonType": "string"
+          },
+          "nombre": {
+            "bsonType": "string"
+          },
+          "provincia": {
+            "bsonType": "string"
+          },
+          "telefono": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Pizzeria.Comandas": {
+      "ns": "Pizzeria.Comandas",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "clienteId",
+          "fechaPedido",
+          "infoEntrega",
+          "notas",
+          "precioTotal",
+          "productos",
+          "tiendaId",
+          "tipoPedido"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "clienteId": {
+            "bsonType": "objectId"
+          },
+          "fechaPedido": {
+            "bsonType": "date"
+          },
+          "infoEntrega": {
+            "bsonType": "object",
+            "properties": {
+              "empleadoEntregaId": {
+                "bsonType": "objectId"
+              },
+              "fechaEntrega": {
+                "bsonType": "date"
+              }
+            },
+            "required": [
+              "empleadoEntregaId",
+              "fechaEntrega"
+            ]
+          },
+          "notas": {
+            "bsonType": "string"
+          },
+          "precioTotal": {
+            "bsonType": "int"
+          },
+          "productos": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "properties": {
+                "cantidad": {
+                  "bsonType": "int"
+                },
+                "nombre": {
+                  "bsonType": "string"
+                },
+                "precioUnidad": {
+                  "bsonType": "int"
+                },
+                "productoId": {
+                  "bsonType": "objectId"
+                }
+              },
+              "required": [
+                "cantidad",
+                "nombre",
+                "precioUnidad",
+                "productoId"
+              ]
+            }
+          },
+          "tiendaId": {
+            "bsonType": "objectId"
+          },
+          "tipoPedido": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Pizzeria.Empleados": {
+      "ns": "Pizzeria.Empleados",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "apellidos",
+          "nif",
+          "nombre",
+          "rol",
+          "telefono",
+          "tiendaId"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "apellidos": {
+            "bsonType": "string"
+          },
+          "nif": {
+            "bsonType": "string"
+          },
+          "nombre": {
+            "bsonType": "string"
+          },
+          "rol": {
+            "bsonType": "string"
+          },
+          "telefono": {
+            "bsonType": "string"
+          },
+          "tiendaId": {
+            "bsonType": "objectId"
+          }
+        }
+      }
+    },
+    "Pizzeria.Productos": {
+      "ns": "Pizzeria.Productos",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "categoriaId",
+          "descripcion",
+          "image",
+          "nombre",
+          "precio",
+          "tipo"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "categoriaId": {
+            "bsonType": "objectId"
+          },
+          "descripcion": {
+            "bsonType": "string"
+          },
+          "image": {
+            "bsonType": "string"
+          },
+          "nombre": {
+            "bsonType": "string"
+          },
+          "precio": {
+            "bsonType": "int"
+          },
+          "tipo": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "Pizzeria.Tiendas": {
+      "ns": "Pizzeria.Tiendas",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "ciudad",
+          "codigoPostal",
+          "direccion",
+          "provincia"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "ciudad": {
+            "bsonType": "string"
+          },
+          "codigoPostal": {
+            "bsonType": "string"
+          },
+          "direccion": {
+            "bsonType": "string"
+          },
+          "provincia": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  },
+  "relationships": [
+    {
+      "id": "7b96cc94-a2c4-4f37-8831-5e1e323d1667",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Productos",
+          "fields": [
+            "categoriaId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.CategoriasPizza",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "fafbabc4-92d6-416f-8839-8c927c341ce8",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Comandas",
+          "fields": [
+            "clienteId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.Clientes",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "39341627-b2a7-4a9d-92a2-abc74a0f2e81",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Comandas",
+          "fields": [
+            "infoEntrega",
+            "empleadoEntregaId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.Empleados",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "f10c14ed-9abb-4b97-b743-835e48cf7cd0",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Comandas",
+          "fields": [
+            "productos",
+            "productoId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.Productos",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "b0483ca3-27a4-4393-b550-9b38596a8134",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Comandas",
+          "fields": [
+            "tiendaId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.Tiendas",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    },
+    {
+      "id": "70bbffda-574a-4c01-91ee-c1d18982a262",
+      "relationship": [
+        {
+          "ns": "Pizzeria.Empleados",
+          "fields": [
+            "tiendaId"
+          ],
+          "cardinality": 1
+        },
+        {
+          "ns": "Pizzeria.Tiendas",
+          "fields": [
+            "_id"
+          ],
+          "cardinality": 1
+        }
+      ],
+      "isInferred": true
+    }
+  ]
+}
